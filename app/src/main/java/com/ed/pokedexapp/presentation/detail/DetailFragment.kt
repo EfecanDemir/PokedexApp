@@ -56,17 +56,27 @@ class DetailFragment : Fragment() {
             binding.tvPokemonNameTitle.text = it.data?.name?.capitalize()
             val formattedNumber = String.format("#%03d", it.data?.id)
             binding.tvPokemonNumberTitle.text=formattedNumber
-            /*
-            it.data?.height.toString()
-            it.data?.weight.toString()
-            it.data?.stats.toString()
-            it.data?.stats?.get(0)?.base_stat.toString() //hp
-            it.data?.stats?.get(1)?.base_stat.toString() //attack
-            it.data?.stats?.get(2)?.base_stat.toString() //defense
-            it.data?.stats?.get(3)?.base_stat.toString() //special-attack
-            it.data?.stats?.get(4)?.base_stat.toString() //special-defense
-            it.data?.stats?.get(5)?.base_stat.toString() //speed
-            */
+            binding.tvWeightAmount.text="${(it.data?.weight!! / 10.0)} kg"
+            binding.tvHeightAmount.text="${(it.data?.height!! / 10.0)} m"
+            binding.hpBaseState.text="%03d".format(it.data?.stats?.get(0)?.base_stat)
+            binding.atkBaseState.text="%03d".format(it.data?.stats?.get(1)?.base_stat)
+            binding.defBaseState.text="%03d".format(it.data?.stats?.get(2)?.base_stat)
+            binding.satkBaseState.text="%03d".format(it.data?.stats?.get(3)?.base_stat)
+            binding.sdefBaseState.text="%03d".format(it.data?.stats?.get(4)?.base_stat)
+            binding.spdBaseState.text="%03d".format(it.data?.stats?.get(5)?.base_stat)
+            binding.pbHpBaseState.progress=it.data.stats.get(0).base_stat
+            binding.pbAtkBaseState.progress=it.data.stats.get(1).base_stat
+            binding.pbDefBaseState.progress=it.data.stats.get(2).base_stat
+            binding.pbSatkBaseState.progress=it.data.stats.get(3).base_stat
+            binding.pbSdefBaseState.progress=it.data.stats.get(4).base_stat
+            binding.pbSpdBaseState.progress=it.data.stats.get(5).base_stat
+            binding.tvAbilityText.text=it.data?.abilities?.get(0)?.ability?.name?.capitalize()
+            val abilityList = it.data?.abilities
+            binding.tvAbilityTextSecond.text = if (abilityList != null && abilityList.size > 1) {
+                abilityList[1]?.ability?.name?.capitalize() ?: ""
+            } else {
+                ""
+            }
 
             val backgroundColorResId = com.google.android.material.R.color.m3_sys_color_dark_background
             binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
