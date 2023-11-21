@@ -71,11 +71,108 @@ class DetailFragment : Fragment() {
             binding.pbSdefBaseState.progress=it.data.stats.get(4).base_stat
             binding.pbSpdBaseState.progress=it.data.stats.get(5).base_stat
             binding.tvAbilityText.text=it.data?.abilities?.get(0)?.ability?.name?.capitalize()
+
             val abilityList = it.data?.abilities
             binding.tvAbilityTextSecond.text = if (abilityList != null && abilityList.size > 1) {
                 abilityList[1]?.ability?.name?.capitalize() ?: ""
             } else {
                 ""
+            }
+
+            binding.statusType.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="type" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="type"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusNormal.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="normal" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="normal"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusFighting.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="fighting" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="fighting"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusFlying.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="flying" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="flying"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusGround.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="ground" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="ground"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusPoison.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="poison" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="poison"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusRock.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="rock" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="rock"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusBug.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="bug" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="bug"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusGhost.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="ghost" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="ghost"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusSteel.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="steel" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="steel"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusFire.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="fire" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="fire"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusWater.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="water" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="water"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusGrass.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="grass" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="grass"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusElectric.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="electric" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="electric"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusPsychic.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="psychic" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="psychic"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusIce.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="ice" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="ice"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusDragon.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="dragon" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="dragon"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusDark.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="dark" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="dark"){
+                View.VISIBLE
+            }else{
+                View.GONE
+            }
+            binding.statusFairy.visibility=if(it.data?.types?.getOrNull(0)?.type?.name.toString()=="fairy" || it.data?.types?.getOrNull(1)?.type?.name.toString()=="fairy"){
+                View.VISIBLE
+            }else{
+                View.GONE
             }
 
             val backgroundColorResId = com.google.android.material.R.color.m3_sys_color_dark_background
