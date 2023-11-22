@@ -121,6 +121,7 @@
                 android:id="@+id/LinearLayoutWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -161,7 +162,7 @@
 
         <View
             android:layout_width="2dp"
-            android:layout_height="65dp"
+            android:layout_height="85dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/darker_gray" />
@@ -175,6 +176,7 @@
                 android:id="@+id/LinearLayoutHeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -215,7 +217,7 @@
 
         <View
             android:layout_width="2dp"
-            android:layout_height="65dp"
+            android:layout_height="85dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@android:color/darker_gray" />
@@ -237,7 +239,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/tvAbilityText"
+                    android:id="@+id/tvAbilityTextSecond"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -246,7 +248,7 @@
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/tvAbilityTextSecond"
+                    android:id="@+id/tvAbilityText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -287,6 +289,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LinearLayoutAbout" />
 
     <LinearLayout
+        android:id="@+id/lyStatsAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
@@ -301,14 +304,16 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvHp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="HP"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvAtk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ATK"
@@ -317,6 +322,7 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/tvDef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DEF"
@@ -325,6 +331,7 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/tvSatk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SATK"
@@ -333,6 +340,7 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/tvSdef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SDEF"
@@ -341,6 +349,7 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/tvSpd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SPD"
@@ -430,7 +439,6 @@
                 android:layout_marginTop="8dp"
                 android:indeterminate="false"
                 android:max="200"
-                android:progressTint="@color/black"
                 android:progress="50" />
 
             <ProgressBar

@@ -1,5 +1,6 @@
 package com.ed.pokedexapp.presentation.detail
 
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.transition.Transition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -175,8 +177,50 @@ class DetailFragment : Fragment() {
                 View.GONE
             }
 
-            val backgroundColorResId = com.google.android.material.R.color.m3_sys_color_dark_background
+            val typeName = it.data?.types?.getOrNull(0)?.type?.name.toString()
+            val backgroundColorResId = when (typeName) {
+                "type" -> R.color.black
+                "normal" -> R.color.normal
+                "fighting" -> R.color.fighting
+                "bug" -> R.color.bug
+                "dark" -> R.color.dark
+                "dragon" -> R.color.dragon
+                "electric" -> R.color.electric
+                "fairy" -> R.color.fairy
+                "fire" -> R.color.fire
+                "flying" -> R.color.flying
+                "ghost" -> R.color.ghost
+                "grass" -> R.color.grass
+                "ground" -> R.color.ground
+                "ice" -> R.color.ice
+                "poison" -> R.color.poison
+                "psychic" -> R.color.psychic
+                "rock" -> R.color.rock
+                "steel" -> R.color.steel
+                "water" -> R.color.water
+                else -> R.color.black
+            }
             binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvAboutTitle.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvBaseStatsTitle.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvHp.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvAtk.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvDef.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvSatk.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvSdef.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+            binding.tvSpd.setTextColor(ContextCompat.getColor(requireContext(), backgroundColorResId))
+
+            val pbHpBaseState = view.findViewById<ProgressBar>(R.id.pbHpBaseState)
+            val pbAtkBaseState = view.findViewById<ProgressBar>(R.id.pbAtkBaseState)
+            val pbDefBaseState = view.findViewById<ProgressBar>(R.id.pbDefBaseState)
+            val pbSatkBaseState = view.findViewById<ProgressBar>(R.id.pbSatkBaseState)
+            val pbSdefBaseState = view.findViewById<ProgressBar>(R.id.pbSdefBaseState)
+            val pbSpdBaseState = view.findViewById<ProgressBar>(R.id.pbSpdBaseState)
+
+            listOf(pbHpBaseState, pbAtkBaseState, pbDefBaseState, pbSatkBaseState, pbSdefBaseState, pbSpdBaseState)
+                .forEach { progressBar ->
+                    progressBar.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), backgroundColorResId))
+                }
 
             val number = it.data?.id.toString()
             val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$number.png"
