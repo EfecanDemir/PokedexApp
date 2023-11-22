@@ -1,10 +1,7 @@
 package com.ed.pokedexapp.presentation.detail
 
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Bundle
-import android.transition.Transition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
 import com.ed.pokedexapp.R
 import com.ed.pokedexapp.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint

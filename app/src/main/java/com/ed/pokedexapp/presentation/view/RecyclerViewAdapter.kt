@@ -1,6 +1,5 @@
 package com.ed.pokedexapp.presentation.view
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -14,13 +13,63 @@ class RecyclerViewAdapter(private val pokemonList:ArrayList<Pokemon>,private val
     interface Listener {
         fun onItemClick(pokemon: Pokemon)
     }
-    fun filter(text: String?) {
+    fun filterGeneral(text: String?) {
         text?.let {
             filteredList = pokemonList.filter { pokemon ->
-                pokemon.name.contains(text, ignoreCase = true)
+                if (it.startsWith("#")) {
+                    val numberToSearch = it.substring(1).toIntOrNull()
+                    return@filter numberToSearch != null && extractNumberFromUrl(pokemon.url) == numberToSearch.toString()
+                } else {
+                    return@filter pokemon.name.contains(it, ignoreCase = true)
+                }
             }
             notifyDataSetChanged()
         }
+    }
+    fun filterByName(name: String?) {
+        name?.let {
+            filteredList = pokemonList.filter { pokemon ->
+                pokemon.name.contains(it, ignoreCase = true)
+            }
+            notifyDataSetChanged()
+        }
+    }
+
+    fun filterByHashtag(hashtag: String?) {
+        hashtag?.let {
+            filteredList = when {
+                it == "" -> {
+                    pokemonList
+                }
+                it == "#" -> {
+                    pokemonList
+                }
+                it.startsWith("#") -> {
+                    val numberToSearch = it.substring(1).toIntOrNull()
+                    if (numberToSearch != null) {
+                        pokemonList.filter { pokemon ->
+                            extractNumberFromUrl(pokemon.url) == numberToSearch.toString()
+                        }
+                    } else {
+                        emptyList()
+                    }
+                }
+                else -> {
+                    emptyList()
+                }
+            }
+
+            notifyDataSetChanged()
+        }
+    }
+
+
+
+
+    fun extractNumberFromUrl(url: String): String {
+        val regex = "/(\\d+)/$".toRegex()
+        val matchResult = regex.find(url)
+        return matchResult?.groupValues?.get(1) ?: ""
     }
     class RowHolder(val binding : RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
 

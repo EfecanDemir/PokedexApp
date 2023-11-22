@@ -5,15 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.ed.pokedexapp.R
 import com.ed.pokedexapp.databinding.FragmentListBinding
 import com.ed.pokedexapp.domain.model.Pokemon
 import com.ed.pokedexapp.presentation.viewmodel.PokemonViewModel
@@ -56,13 +55,38 @@ class ListFragment :Fragment(), RecyclerViewAdapter.Listener{
 
         binding.recyclerView.adapter = pokemonAdapter
 
+        val imageView = view.findViewById<ImageView>(R.id.ivFilter)
+        if (imageView.tag == null) {
+            imageView.tag = "circle_background"
+        }
+
+        imageView.setOnClickListener {
+            val newDrawableId = if (imageView.tag == "circle_background") {
+                R.drawable.circle_background_tag
+            } else {
+                R.drawable.circle_background
+            }
+
+            imageView.setImageResource(newDrawableId)
+
+            imageView.tag = if (newDrawableId == R.drawable.circle_background) {
+                "circle_background"
+            } else {
+                "circle_background_tag"
+            }
+        }
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                pokemonAdapter.filter(newText)
+                if (imageView.tag == "circle_background") {
+                    pokemonAdapter.filterByName(newText)
+                }else{
+                    pokemonAdapter.filterByHashtag(newText)
+                }
                 return true
             }
         })
@@ -104,6 +128,10 @@ class ListFragment :Fragment(), RecyclerViewAdapter.Listener{
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.searchView.setQuery("", false)
+    }
 
     override fun onItemClick(pokemon: Pokemon) {
         //Toast.makeText(requireContext(),"Clicked on: ${pokemon.name}", Toast.LENGTH_SHORT).show()
