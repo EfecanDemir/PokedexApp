@@ -13,7 +13,6 @@ class RecyclerViewAdapter(private val pokemonList:ArrayList<Pokemon>,private val
     interface Listener {
         fun onItemClick(pokemon: Pokemon)
     }
-    private val colors: Array<String> = arrayOf("#13bd27","#29c1e1","#b129e1","#d3df13","#f6bd0c","#a1fb93","#0d9de3","#ffe48f")
 
     class RowHolder(val binding : RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -34,7 +33,6 @@ class RecyclerViewAdapter(private val pokemonList:ArrayList<Pokemon>,private val
             val action = ListFragmentDirections.actionListFragmentToDetailFragment(pokemon.name)
             Navigation.findNavController(it).navigate(action)
         }
-        holder.itemView.setBackgroundColor(Color.parseColor(colors[position % 8]))
         holder.binding.pokemonNameText.text = pokemon.name.capitalize()
         val number = pokemon.url.split("/").filter { it.isNotEmpty() }.lastOrNull()?.toIntOrNull()
         val formattedNumber = String.format("#%03d", number)
