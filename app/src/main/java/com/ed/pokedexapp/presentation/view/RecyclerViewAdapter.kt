@@ -10,10 +10,18 @@ import com.ed.pokedexapp.databinding.RecyclerRowBinding
 import com.ed.pokedexapp.domain.model.Pokemon
 
 class RecyclerViewAdapter(private val pokemonList:ArrayList<Pokemon>,private val listener:Listener): RecyclerView.Adapter<RecyclerViewAdapter.RowHolder>() {
+    private var filteredList: List<Pokemon> = pokemonList.toList()
     interface Listener {
         fun onItemClick(pokemon: Pokemon)
     }
-
+    fun filter(text: String?) {
+        text?.let {
+            filteredList = pokemonList.filter { pokemon ->
+                pokemon.name.contains(text, ignoreCase = true)
+            }
+            notifyDataSetChanged()
+        }
+    }
     class RowHolder(val binding : RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -22,11 +30,11 @@ class RecyclerViewAdapter(private val pokemonList:ArrayList<Pokemon>,private val
         return RowHolder(itemBinding)
     }
     override fun getItemCount(): Int {
-        return pokemonList.count()
+        return filteredList.count()
     }
 
     override fun onBindViewHolder(holder: RowHolder, position: Int) {
-        val pokemon = pokemonList.get(position)
+        val pokemon = filteredList[position]
 
         holder.itemView.setOnClickListener {
             //listener.onItemClick(pokemon)

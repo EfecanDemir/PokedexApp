@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -52,6 +53,19 @@ class ListFragment :Fragment(), RecyclerViewAdapter.Listener{
         viewModel.loadData()
 
         observeLiveData()
+
+        binding.recyclerView.adapter = pokemonAdapter
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                pokemonAdapter.filter(newText)
+                return true
+            }
+        })
     }
 
     private fun observeLiveData() {

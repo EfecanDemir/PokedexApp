@@ -52,6 +52,8 @@
         android:queryHint="Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:searchIcon="@drawable/search"
+        android:closeIcon="@drawable/close"
         app:layout_constraintTop_toBottomOf="@+id/lyTopBar"/>
 
     <androidx.recyclerview.widget.RecyclerView

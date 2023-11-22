@@ -10,8 +10,7 @@ import retrofit2.http.Query
 
 interface PokedexAPI {
 
-//pokemon?limit=2&offset=0
-    @GET("pokemon?limit=220&offset=0")
+    @GET("pokemon?limit=1000&offset=0")
     suspend fun getPokemonList(
     ) : Response<PokemonListDto>
 
@@ -19,15 +18,4 @@ interface PokedexAPI {
     suspend fun getPokemonItems(
         @Path("pokemonName") pokemonName:String
     ) : Response<PokemonDetailListDto>
-
-
-
-
-
-    /*
-    @GET("pokemon")
-    suspend fun getPokemonList(
-        @Query("limit") limit:Int,
-        @Query("offset") offset:Int
-    ) : Response<PokemonListDto>*/
 }
