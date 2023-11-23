@@ -15,6 +15,8 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.ed.pokedexapp.R
 import com.ed.pokedexapp.databinding.FragmentDetailBinding
+import com.ed.pokedexapp.domain.model.Pokemon
+import com.ed.pokedexapp.presentation.viewmodel.PokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +25,7 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: DetailViewModel
-
+    private lateinit var viewModelPokemon : PokemonViewModel
 
     private val args: DetailFragmentArgs by navArgs()
 
@@ -39,12 +41,14 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        viewModelPokemon = ViewModelProvider(this).get(PokemonViewModel::class.java)
+        viewModelPokemon.loadData()
 
         binding.ivBackButton.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        val incomingPokemonName = args.pokemonName
+        var incomingPokemonName = args.pokemonName
 
         viewModel.getPokemonDetail(incomingPokemonName)
 
@@ -220,9 +224,35 @@ class DetailFragment : Fragment() {
             val number = it.data?.id.toString()
             val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$number.png"
 
+            if (number=="1"){
+                binding.ivLeftArrow.visibility=View.GONE
+            }else if(number=="1000"){
+                binding.ivRightArrow.visibility=View.GONE
+            }else{
+                binding.ivLeftArrow.visibility=View.VISIBLE
+                binding.ivRightArrow.visibility=View.VISIBLE
+            }
+
             Glide.with(requireContext())
                 .load(imageUrl)
                 .into(binding.ivDetailPokemon)
+        })
+
+        viewModelPokemon.pokemonList.observe(viewLifecycleOwner, Observer { resource ->
+            val pokemonList: List<Pokemon> = resource.data ?: emptyList()
+
+            binding.ivRightArrow.setOnClickListener {
+                var pokemonIndex = pokemonList.indexOfFirst { it.name == incomingPokemonName}
+                var pokemonNext=pokemonIndex+1
+                incomingPokemonName= pokemonList[pokemonNext].name
+                viewModel.getPokemonDetail(incomingPokemonName)
+            }
+            binding.ivLeftArrow.setOnClickListener {
+                var pokemonIndex = pokemonList.indexOfFirst { it.name == incomingPokemonName}
+                var pokemonPrevious=pokemonIndex-1
+                incomingPokemonName= pokemonList[pokemonPrevious].name
+                viewModel.getPokemonDetail(incomingPokemonName)
+            }
         })
     }
 
