@@ -2,7 +2,6 @@ package com.ed.pokedexapp.domain.use_case.get_pokemons
 
 import com.ed.pokedexapp.data.mappers.toPokemon
 import com.ed.pokedexapp.data.service.PokedexAPI
-import com.ed.pokedexapp.data.service.dto.PokemonListDto
 import com.ed.pokedexapp.domain.model.Pokemon
 import com.ed.pokedexapp.util.Resource
 import javax.inject.Inject
