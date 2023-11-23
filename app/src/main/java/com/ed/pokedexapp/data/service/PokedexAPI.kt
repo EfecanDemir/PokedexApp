@@ -2,11 +2,10 @@ package com.ed.pokedexapp.data.service
 
 import com.ed.pokedexapp.data.service.dto.PokemonDetailListDto
 import com.ed.pokedexapp.data.service.dto.PokemonListDto
-import com.ed.pokedexapp.domain.model.Pokemon
+import com.ed.pokedexapp.data.service.dto.PokemonSpeciesListDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface PokedexAPI {
 
@@ -18,4 +17,9 @@ interface PokedexAPI {
     suspend fun getPokemonItems(
         @Path("pokemonName") pokemonName:String
     ) : Response<PokemonDetailListDto>
+
+    @GET("pokemon-species/{pokemonName}")
+    suspend fun getPokemonSpeciesItems(
+        @Path("pokemonName") pokemonName:String
+    ) : Response<PokemonSpeciesListDto>
 }

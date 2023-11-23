@@ -4,6 +4,7 @@ import com.ed.pokedexapp.data.repository.PokemonRepositoryImpl
 import com.ed.pokedexapp.data.service.PokedexAPI
 import com.ed.pokedexapp.domain.repository.PokemonRepository
 import com.ed.pokedexapp.domain.use_case.get_pokemon_detail.GetPokemonDetailsUseCase
+import com.ed.pokedexapp.domain.use_case.get_pokemon_species.GetPokemonSpeciesUseCase
 import com.ed.pokedexapp.domain.use_case.get_pokemons.GetPokemonsUseCase
 import com.ed.pokedexapp.util.Constants.BASE_URL
 import dagger.Module
@@ -37,6 +38,7 @@ object PokedexAppModule {
     @Provides
     fun injectPokedexRepo(
         getPokemonsUseCase: GetPokemonsUseCase,
-        getPokemonDetailsUseCase: GetPokemonDetailsUseCase
-    ) = PokemonRepositoryImpl(getPokemonsUseCase,getPokemonDetailsUseCase) as PokemonRepository
+        getPokemonDetailsUseCase: GetPokemonDetailsUseCase,
+        getPokemonSpeciesUseCase: GetPokemonSpeciesUseCase
+    ) = PokemonRepositoryImpl(getPokemonsUseCase,getPokemonDetailsUseCase,getPokemonSpeciesUseCase) as PokemonRepository
 }

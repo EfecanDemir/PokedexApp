@@ -1,15 +1,6 @@
 package com.ed.pokedexapp.data.mappers
 
-import com.ed.pokedexapp.data.service.dto.Form
-import com.ed.pokedexapp.data.service.dto.Gameİndice
-import com.ed.pokedexapp.data.service.dto.Move
 import com.ed.pokedexapp.data.service.dto.PokemonDetailListDto
-import com.ed.pokedexapp.data.service.dto.Result
-import com.ed.pokedexapp.data.service.dto.Species
-import com.ed.pokedexapp.data.service.dto.Sprites
-import com.ed.pokedexapp.data.service.dto.Stat
-import com.ed.pokedexapp.data.service.dto.Type
-import com.ed.pokedexapp.domain.model.Pokemon
 import com.ed.pokedexapp.domain.model.PokemonDetail
 
 fun PokemonDetailListDto.toPokemonDetail(): PokemonDetail {

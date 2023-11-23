@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ed.pokedexapp.domain.model.PokemonDetail
+import com.ed.pokedexapp.domain.model.PokemonSpecies
 import com.ed.pokedexapp.domain.repository.PokemonRepository
 import com.ed.pokedexapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(private val pokemonRepository: PokemonRepository) :
     ViewModel() {
     val pokemon = MutableLiveData<Resource<PokemonDetail>>()
+    val pokemonSpecies = MutableLiveData<Resource<PokemonSpecies>>()
     val pokemonLoading = MutableLiveData<Resource<Boolean>>()
     val pokemonError = MutableLiveData<Resource<Boolean>>()
 
@@ -35,6 +37,20 @@ class DetailViewModel @Inject constructor(private val pokemonRepository: Pokemon
                     pokemonLoading.value = Resource.loading(false)
                     pokemonError.value = Resource.error("", false)
                     pokemon.value = resource
+                }
+            }
+        }
+    }
+    fun getPokemonSpecies(pokemonName: String) {
+        pokemonLoading.value = Resource.loading(true)
+
+        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+            val resource = pokemonRepository.getPokemonSpecies(pokemonName)
+            withContext(Dispatchers.Main) {
+                resource.data?.let {
+                    pokemonLoading.value = Resource.loading(false)
+                    pokemonError.value = Resource.error("", false)
+                    pokemonSpecies.value = resource
                 }
             }
         }

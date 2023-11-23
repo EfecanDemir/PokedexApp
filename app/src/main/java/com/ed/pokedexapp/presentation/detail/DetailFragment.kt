@@ -51,6 +51,7 @@ class DetailFragment : Fragment() {
         var incomingPokemonName = args.pokemonName
 
         viewModel.getPokemonDetail(incomingPokemonName)
+        viewModel.getPokemonSpecies(incomingPokemonName)
 
         viewModel.pokemon.observe(viewLifecycleOwner, Observer {
 
@@ -246,12 +247,33 @@ class DetailFragment : Fragment() {
                 var pokemonNext=pokemonIndex+1
                 incomingPokemonName= pokemonList[pokemonNext].name
                 viewModel.getPokemonDetail(incomingPokemonName)
+                viewModel.getPokemonSpecies(incomingPokemonName)
             }
             binding.ivLeftArrow.setOnClickListener {
                 var pokemonIndex = pokemonList.indexOfFirst { it.name == incomingPokemonName}
                 var pokemonPrevious=pokemonIndex-1
                 incomingPokemonName= pokemonList[pokemonPrevious].name
                 viewModel.getPokemonDetail(incomingPokemonName)
+                viewModel.getPokemonSpecies(incomingPokemonName)
+            }
+        })
+
+        viewModel.pokemonSpecies.observe(viewLifecycleOwner, Observer {
+
+            try {
+                if (it.data?.flavor_text_entries?.get(9)?.flavor_text != null && it.data?.flavor_text_entries?.get(9)?.language?.name =="en"){
+                    val originalText = it.data?.flavor_text_entries?.get(9)?.flavor_text ?: ""
+                    val cleanedText = originalText.replace("\n", "")
+                    binding.tvPokemonSpeciesTitle.text=cleanedText
+                    binding.tvPokemonSpeciesTitle.visibility=View.VISIBLE
+                }
+            }catch (e:Exception){
+                if (it.data?.flavor_text_entries?.get(0)?.flavor_text != null){
+                    val originalText = it.data?.flavor_text_entries?.get(0)?.flavor_text ?: ""
+                    val cleanedText = originalText.replace("\n", "")
+                    binding.tvPokemonSpeciesTitle.text=cleanedText
+                    binding.tvPokemonSpeciesTitle.visibility=View.VISIBLE
+                }
             }
         })
     }
