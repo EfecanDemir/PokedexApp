@@ -20,14 +20,23 @@ Welcome to the Pokédex Android application! This project is a native Android ap
 | ----------- | 
 On the main screen, Pokémon are listed and you can perform search operations based on hashtags or names.
 
-https://github.com/EfecanDemir/PokedexApp/assets/44000014/1a47d26f-d14f-4268-8f79-1c766dee7a40
+
+
+https://github.com/EfecanDemir/PokedexApp/assets/44000014/208315c3-73ec-40eb-ada2-4f29f9ecdc7e
+
+
+
 
 
 | Search with Hashtag | 
 | ----------- | 
 To search for Pokémon by hashtags, the hashtag filter should be selected on the right side of the search bar.
 
-https://github.com/EfecanDemir/PokedexApp/assets/44000014/3c534a6e-6cf1-474b-85c4-09aa681f76dd
+
+
+https://github.com/EfecanDemir/PokedexApp/assets/44000014/1094e3d4-d291-4887-bc5e-8db33528c24a
+
+
 
 | Search with Name | 
 | ----------- | 
@@ -35,7 +44,11 @@ To search for Pokémon by names, the name filter should be selected on the right
 
 
 
-https://github.com/EfecanDemir/PokedexApp/assets/44000014/2dfddfcf-9fb3-401d-ac5b-579c6422e00c
+
+https://github.com/EfecanDemir/PokedexApp/assets/44000014/d7379cfd-b47a-4a2b-8994-389b0de6b10b
+
+
+
 
 | Pokémon Detail Screen and Switching Operations | 
 | ----------- | 
@@ -43,7 +56,11 @@ The Pokémon detail screen includes general information about the Pokémon and i
 
 
 
-https://github.com/EfecanDemir/PokedexApp/assets/44000014/a26a0b13-426f-4135-8c95-0ab522e55ad7
+
+https://github.com/EfecanDemir/PokedexApp/assets/44000014/6329bec7-a66b-499b-a868-ee5c795a04bd
+
+
+
 
 
 
