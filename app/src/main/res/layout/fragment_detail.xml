@@ -333,9 +333,8 @@
         android:id="@+id/lyStatsAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/viewWhiteBox"
+        app:layout_constraintStart_toStartOf="@+id/viewWhiteBox"
         app:layout_constraintTop_toBottomOf="@+id/tvBaseStatsTitle">
 
         <LinearLayout
