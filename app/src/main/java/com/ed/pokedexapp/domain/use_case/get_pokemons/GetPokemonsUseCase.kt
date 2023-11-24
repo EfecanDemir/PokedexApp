@@ -14,12 +14,12 @@ class GetPokemonsUseCase @Inject constructor(val pokemonApi:PokedexAPI) {
             if(response?.isSuccessful==true){
                 response.body()?.let{
                     return@let Resource.success(it.results.map { it.toPokemon() })
-                }?: Resource.error("Body boş geldi!",null)
-            } else {
-                Resource.error("Response successful değil!",null)
+                }?: Resource.error("Error",null)
+            }else {
+                Resource.error("Response error",null)
             }
         } catch (e: Exception) {
-            Resource.error("Bütün olay patladı!",null)
+            Resource.error( "Could not reach internet",null)
         }
     }
 }
